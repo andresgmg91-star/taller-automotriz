@@ -1,1 +1,139 @@
-# taller-automotriz
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taller Automotriz</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body { background-color: #f5f5f5; }
+.navbar { background-color: #1f3c88; }
+.navbar-brand, .nav-link { color: white !important; }
+.card { margin-top: 20px; }
+.btn-primary { background-color: #1f3c88; border: none; }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+<div class="container-fluid">
+<a class="navbar-brand" href="#">Taller Automotriz</a>
+</div>
+</nav>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div class="card">
+<div class="card-header bg-primary text-white">Inicio de Sesión</div>
+<div class="card-body">
+<input type="text" id="usuario" class="form-control mb-2" placeholder="Usuario">
+<input type="password" id="password" class="form-control mb-2" placeholder="Contraseña">
+<button class="btn btn-primary" onclick="login()">Ingresar</button>
+</div>
+</div>
+
+<!-- REGISTRO CLIENTE -->
+<div class="card">
+<div class="card-header bg-primary text-white">Registro de Cliente</div>
+<div class="card-body">
+<input type="text" id="nombre" class="form-control mb-2" placeholder="Nombre">
+<input type="text" id="cedula" class="form-control mb-2" placeholder="Cédula">
+<input type="text" id="telefono" class="form-control mb-2" placeholder="Teléfono">
+<button class="btn btn-primary" onclick="guardarCliente()">Guardar Cliente</button>
+</div>
+</div>
+
+<!-- REGISTRO VEHICULO -->
+<div class="card">
+<div class="card-header bg-primary text-white">Registro de Vehículo</div>
+<div class="card-body">
+<input type="text" id="placa" class="form-control mb-2" placeholder="Placa">
+<input type="text" id="marca" class="form-control mb-2" placeholder="Marca">
+<button class="btn btn-primary" onclick="guardarVehiculo()">Guardar Vehículo</button>
+</div>
+</div>
+
+<!-- TABLA -->
+<div class="card">
+<div class="card-header bg-primary text-white">Listado de Clientes</div>
+<div class="card-body">
+<table class="table table-striped" id="tablaClientes">
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Cédula</th>
+<th>Teléfono</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<script>
+
+// LOGIN
+function login() {
+let user = document.getElementById("usuario").value;
+let pass = document.getElementById("password").value;
+
+if(user === "admin" && pass === "1234"){
+alert("Bienvenido al sistema");
+} else {
+alert("Usuario o contraseña incorrectos");
+}
+}
+
+// GUARDAR CLIENTE
+function guardarCliente(){
+let nombre = document.getElementById("nombre").value;
+let cedula = document.getElementById("cedula").value;
+let telefono = document.getElementById("telefono").value;
+
+if(nombre === "" || cedula === "" || telefono === ""){
+alert("Todos los campos son obligatorios");
+return;
+}
+
+let tabla = document.getElementById("tablaClientes").getElementsByTagName('tbody')[0];
+let fila = tabla.insertRow();
+
+fila.insertCell(0).innerHTML = nombre;
+fila.insertCell(1).innerHTML = cedula;
+fila.insertCell(2).innerHTML = telefono;
+
+alert("Cliente guardado correctamente");
+
+// limpiar
+document.getElementById("nombre").value = "";
+document.getElementById("cedula").value = "";
+document.getElementById("telefono").value = "";
+}
+
+// GUARDAR VEHICULO
+function guardarVehiculo(){
+let placa = document.getElementById("placa").value;
+let marca = document.getElementById("marca").value;
+
+if(placa === "" || marca === ""){
+alert("Complete los datos del vehículo");
+return;
+}
+
+alert("Vehículo registrado correctamente");
+
+// limpiar
+document.getElementById("placa").value = "";
+document.getElementById("marca").value = "";
+}
+
+</script>
+
+</body>
+</html>
